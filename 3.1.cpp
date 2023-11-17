@@ -1,39 +1,25 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-void countingSort(int arr[], int n) {
-    int count[128] = {0}; 
-    int output[n]; 
-
-    for (int i = 0; i < n; i++) {
-        count[arr[i]]++; 
-    }
-
-    for (int i = 1; i <= 127; i++) {
-        count[i] += count[i-1];
-    }
-
-    for (int i = n-1; i >= 0; i--) {
-        output[count[arr[i]]-1] = arr[i]; 
-        count[arr[i]]--;
-    }
-
-    for (int i = 0; i < n; i++) {
-        arr[i] = output[i];
-    }
-}
-
 int main() {
-    int n;
-    cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+    int N;
+    cin >> N;
+
+    vector<int> input(N);
+    vector<int> count(128, 0);
+
+    for (int i = 0; i < N; i++) {
+        cin >> input[i];
+        count[input[i]]++; 
     }
-    countingSort(arr, n);
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
+
+    for (int i = 0; i < 128; i++) {
+        for (int j = 0; j < count[i]; j++) {
+            cout << i << " "; 
+        }
     }
+
     return 0;
 }
