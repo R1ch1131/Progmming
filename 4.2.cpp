@@ -20,7 +20,6 @@ private:
         }
     }
 
-
     void siftDown(int index) {
         int size = pq.size();
         while (2 * index + 1 < size) {
